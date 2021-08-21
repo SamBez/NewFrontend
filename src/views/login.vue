@@ -64,7 +64,7 @@
             <v-row class="pt-4 mt-4" justify="center">
         
               <v-btn
-                href="https://github.com/vuetifyjs/vuetify/releases/latest"
+                href="http://localhost:8081/#/signup"
                 target="_blank"
                 text--blue
                 elevation="0"

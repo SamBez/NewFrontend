@@ -1,82 +1,83 @@
 <template>
-   <v-app>
-    <v-app-bar 
-     app
-     color="lightgrey" 
-     dark >
-      <div class="d-flex align-left">
-        <v-btn
-          href="https://github.com/vuetifyjs/vuetify/releases/latest"
-          target="_blank"
-          text
+
+ <v-app id="inspire">
+    <v-navigation-drawer 
+    v-model="drawer"
+    app>
+      <v-list-item>
+        <v-list-item-content>
+          <v-list-item-title class="text-h6">
+            AASTU Student's Center
+          </v-list-item-title>
+          <!--
+          <v-list-item-subtitle>
+            
+          </v-list-item-subtitle>
+          -->
+        </v-list-item-content>
+      </v-list-item>
+
+      <v-divider></v-divider>
+
+      <v-list
+        dense
+        nav
+      >
+        <v-list-item
+          v-for="item in items"
+          :key="item.title"
+          :to="item.to"
+          link
         >
-          <div class="d-flex align-center">
-            <v-img
+          <v-list-item-icon>
+            <v-icon>{{ item.icon }}</v-icon>
+          </v-list-item-icon>
+
+          <v-list-item-content>
+            <v-list-item-title>{{ item.title }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
+  
+    <v-app-bar
+      app
+     dark
+      height="80"
+      scroll-target="#scrolling-techniques-2"
+    >
+   <v-app-bar-nav-icon @click="drawer = !drawer "></v-app-bar-nav-icon>
+
+    <v-img
               alt="Vuetify Logo"
               class="shrink mr-2"
               contain
-              :src="require('./assets/images.jpeg')"
+              :src="require('./assets/aastu_logo1.png')"
               transition="scale-transition"
-              width="110"
+              width="100"
+              max-height="60"
             />
-          </div>
-          <span class="mr-2">Aastu Student's Center</span>
-        </v-btn>
-      </div>
+      <v-toolbar-title> AASTU Student's Center </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Home</span>
-      </v-btn>
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2 ">Events Board</span>
-      </v-btn>
-
-
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Forum</span>
-      </v-btn>
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Clubs</span>
-      </v-btn>
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2 blue--text">login</span>
-      </v-btn>
     </v-app-bar>
+
     <v-main>
-      <v-container>
         <router-view> </router-view>
-      </v-container>
     </v-main>
-    <v-spacer></v-spacer>
-    <v-footer dark padless >
+
+ <v-spacer></v-spacer>
+    <v-footer dark padless color="black">
       <v-col class="text-center" cols="12">
-        <v-icon class="fa fa-instagram"></v-icon>
         {{ new Date().getFullYear() }} —
-        <v-btn target="_blank" text><strong>About Us</strong></v-btn>
+        <v-btn target="_blank" text v-for="link in links" :key="link.text" router :to="link.to" >
+        <strong>About Us</strong>
+        </v-btn>
       </v-col>
     </v-footer>
-    <v-spacer></v-spacer>
+   
+
   </v-app>
+  
 </template>
 
 <script>
@@ -89,7 +90,16 @@ export default {
   },
   
   data: () => ({
-    //
+    drawer: null,
+    items: [
+          { title: 'Home', icon: 'mdi-home', to:'/' },
+          { title: 'Clubs', icon: 'mdi-account-group-outline', to:'' },
+          { title: 'Forum', icon: 'mdi-forum-outline' , to:'' },
+          { title: 'Login', icon: 'mdi-login-variant', to:'/login' },
+        ],
+        links: [
+          {text: 'About Us', to: '/about'}
+        ]
   }),
 };
 </script>

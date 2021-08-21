@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home1 from '../views/Home.vue'
 import login from '../views/login.vue'
 import superadmin from '../components/superadmin.vue'
 import Home from '../components/Home.vue'
+import signup from '../components/signup.vue'
 
 Vue.use(VueRouter)
 
@@ -21,16 +21,17 @@ const routes = [
 },
 
 {
+  path: '/signup',
+  name: 'signup',
+  component: signup
+},
+
+{
   path: '/super',
   name: 'super',
   component: superadmin
 },
 
-{
-  path: '/home',
-  name: 'home',
-  component: Home1
-},
 
   {
     path: '/about',
